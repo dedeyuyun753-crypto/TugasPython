@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <title>Website Uyun 🌸</title>
 
 <style>
@@ -23,7 +24,20 @@ body{
     border-radius:25px;
     backdrop-filter: blur(8px);
 }
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+.card{
+    animation: fadeIn 1s ease;
+}
 h1{
     font-size:40px;
 }
