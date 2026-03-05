@@ -1,61 +1,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
 <title>Website Uyun 🌸</title>
 
 <style>
 
+/* ===== BODY ===== */
 body{
     margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(to bottom, #ffb6c1, #ffe4e1);
-    height: 100vh;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(-45deg,#ffb6c1,#ffe4e1,#ffd1dc,#ffc0cb);
+    background-size:400% 400%;
+    animation: gradientBG 10s ease infinite;
+
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
     color:white;
+    overflow:hidden;
 }
 
+/* Animasi background */
+@keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* ===== BOX CARD ===== */
 .box{
-    background: rgba(255,255,255,0.2);
-    padding:40px;
-    border-radius:25px;
-    backdrop-filter: blur(8px);
-}
-@keyframes fadeIn{
-    from{
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
+    background: rgba(255,255,255,0.18);
+    padding:45px;
+    border-radius:30px;
+    backdrop-filter: blur(12px);
+    box-shadow:0 0 25px rgba(255,255,255,0.3);
+    transition:0.4s;
 }
 
-.card{
-    animation: fadeIn 1s ease;
+.box:hover{
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:0 0 40px rgba(255,255,255,0.5);
 }
+
+/* ===== TEXT ===== */
 h1{
     font-size:40px;
+    margin-bottom:10px;
+    animation: fadeIn 1s ease;
 }
 
 p{
     font-size:18px;
+    opacity:0.9;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== BUTTON ===== */
+.btn{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:#ff6b81;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    font-family:Poppins;
+}
+
+.btn:hover{
+    background:#ff6b81;
+    color:white;
+    transform:scale(1.1);
+}
+
+/* ===== FLOWER PARTICLE ===== */
+.flower{
+    position:absolute;
+    top:-50px;
+    color:white;
+    opacity:0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform: translateY(110vh) rotate(360deg);
+    }
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="box">
 <h1>🌸 Uyun Website</h1>
-<p>Selamat datang di website ku 💕</p>
+<p id="text">Selamat datang di website ku 💕</p>
+
+<button class="btn" onclick="changeText()">
+Klik Aku 🤭
+</button>
 </div>
+
+<script>
+
+/* ===== TEKS INTERAKTIF ===== */
+function changeText(){
+    const texts = [
+        "Terima kasih sudah mampir 🌷",
+        "Semoga harimu menyenangkan ✨",
+        "Tetap semangat yaa 💕",
+        "Aku bikin ini khusus buat kamu 🤭"
+    ];
+
+    document.getElementById("text").innerText =
+    texts[Math.floor(Math.random()*texts.length)];
+}
+
+/* ===== FLOWER PARTICLE LOOP ===== */
+function createFlower(){
+    const flower = document.createElement("div");
+    flower.innerHTML = "🌸";
+    flower.className = "flower";
+
+    flower.style.left = Math.random()*100 + "vw";
+    flower.style.animationDuration = (4 + Math.random()*6) + "s";
+    flower.style.fontSize = (10 + Math.random()*20) + "px";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },10000);
+}
+
+setInterval(createFlower,500);
+
+</script>
 
 </body>
 </html>
